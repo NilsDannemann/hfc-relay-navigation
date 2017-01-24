@@ -33,10 +33,40 @@
         pointer-events: none;
         &.show {visibility: visible; pointer-events: all;}
       }
-      
     }
   }
 }
+
+
+
+/*
+ * DRAWER
+*/
+@include respond-below(m) {
+
+  .app-nav {
+
+    &__dropdown {
+      @include position(absolute, $top:0, $right:0, $bottom:0);
+      width: 50vw;
+      opacity: 0;
+      transform:translate(50vw,0) !important;
+      &.show{opacity: 1; transform:translate(0,0) !important;}
+
+      .has-submenu {
+          position: initial;
+          ul{
+            @include position(absolute, $top:0, $right:0, $bottom:0);
+            width: 50vw;
+            opacity: 0;
+            transform:translate(50vw,0) !important;
+            &.show{opacity: 1; transform:translate(20px,0) !important;}
+          }
+      }
+    }
+  }
+}
+
 
 
 
@@ -63,7 +93,7 @@
   }
 
   &__dropdown-toggle {
-    @include icon('fa-caret-down', $margin: 0 10px 0 0);
+    @include icon('fa-bars', $margin: 0 10px 0 0);
     position: absolute;
     visibility: hidden;
     outline: none;
@@ -87,7 +117,7 @@
     }
   }
 
-  &__wrapper {display: inline-block; position: relative;}
+  &__wrapper {display: inline-block; @include respond-above(m) { position: relative;}}
   &-is-visible {visibility: visible;}
   &-is-hidden  {visibility: hidden;}
 }

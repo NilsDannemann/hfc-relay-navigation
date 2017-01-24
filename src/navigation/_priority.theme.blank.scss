@@ -13,6 +13,7 @@
 
   .has-submenu {
     > ul {
+    	box-shadow: $box-shadow, $box-shadow-xxl;
     	@include transition();
     	opacity: 0;
     	transform: translateY(10px);
