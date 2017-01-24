@@ -75,7 +75,12 @@
 		</script>
 	<!-- Priority NAV -->
 
-		<script type="text/javascript" src="../js/hfc-relay-nav.js"></script>
+		<script type="text/javascript" src="../js/hfc-relay-nav.min.js"></script>
+		<script type="text/javascript">
+			var HFCRelayNav = new HFCRelayNav();
+			// // HFCRelayNav.init('SELECTOR', {OPTIONS});
+			HFCRelayNav.init('.app-nav', {});
+		</script>
 
 </body>
 </html>
