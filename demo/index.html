@@ -10,7 +10,7 @@
 	<h1 class="demo-title">HFC Relay - Navigation</h1>
 	<p class="demo-subtitle">Priority - Multi Level Drawer<br><br><br></p>
 	<a href="https://www.regionalaustraliabank.com.au/" target="_blank" style="margin: auto;">Good Example</a>
-	
+
 	<nav class="app-nav">
         <ul>
             <li><a href="#">menu item</a></li>
@@ -44,12 +44,12 @@
             <li><a href="#">menu item</a></li>
         </ul>
     </nav>
-	
+
 	<!--[if lte IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-	
+
 
 	<!-- Priority NAV -->
 		<!-- <script src="../js/jquery.js"></script> -->
@@ -74,79 +74,8 @@
 		    });
 		</script>
 	<!-- Priority NAV -->
-		
-		<script>
-			(function() {
 
-				/**
-				 * Toggle class on element
-				 * @param el
-				 * @param className
-				 */
-				var toggleClass = function (el, className) {
-					if (el.classList) {
-						el.classList.toggle(className);
-					} else {
-				        var classes = el.className.split(" ");
-				        var existingIndex = classes.indexOf(className);
-
-				        if (existingIndex >= 0)
-				            classes.splice(existingIndex, 1); else
-				            classes.push(className);
-
-				        el.className = classes.join(" ");
-				    }
-				};
-				/**
-				 * Get the closest matching element up the DOM tree
-				 * @param {Element} elem Starting element
-				 * @param {String} selector Selector to match against (class, ID, or data attribute)
-				 * @return {Boolean|Element} Returns false if not match found
-				 */
-				var getClosest = function (elem, selector) {
-				    var firstChar = selector.charAt(0);
-				    for (; elem && elem !== document; elem = elem.parentNode) {
-				        if (firstChar === ".") {
-				            if (elem.classList.contains(selector.substr(1))) {
-				                return elem;
-				            }
-				        } else if (firstChar === "#") {
-				            if (elem.id === selector.substr(1)) {
-				                return elem;
-				            }
-				        } else if (firstChar === "[") {
-				            if (elem.hasAttribute(selector.substr(1, selector.length - 2))) {
-				                return elem;
-				            }
-				        }
-				    }
-				    return false;
-				};
-
-				/*
-				 * Toggle dropdown
-				 */
-				var submenu = document.querySelectorAll('.has-submenu');
-				Array.from(submenu).forEach(item => {
-				    item.addEventListener('click', function(event) {
-				        toggleClass(this, "is-open");
-				        toggleClass(this.querySelector("ul"), "show");
-				    });
-				});
-				
-				/*
-				 * Remove when clicked outside dropdown
-				 */
-				document.addEventListener("click", function (event) {
-				    if (!getClosest(event.target, ".has-submenu") && event.target !== this.querySelector(".has-submenu")) {
-				    	Array.from(submenu).forEach(item => {
-				    	    item.classList.remove("is-open");
-				    	    item.querySelector("ul").classList.remove("show");
-				    	});
-				    }
-				});
-			})();
-		</script>
+		<script type="text/javascript" src="../js/hfc-relay-nav.js"></script>
 
 </body>
 </html>
