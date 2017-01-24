@@ -1,0 +1,91 @@
+/* =======================================*/
+/*
+/* UI KIT - OVERLAY
+/*
+/* =======================================*/
+
+@mixin overlay(
+  $overlay:            $global-overlay,
+  $overlay-color:      $global-overlay-color,
+  $overlay-opacity:    $global-overlay-opacity,
+  $icon:               $global-overlay-icon,
+  $icon-width:         $global-overlay-icon-width,
+  $icon-height:        $global-overlay-icon-height,
+  $icon-color:         $global-overlay-icon-color,
+  $icon-size:          $global-overlay-icon-size,
+  $icon-border:        $global-overlay-icon-border,
+  $icon-border-radius: $global-overlay-icon-border-radius
+  ) {
+  
+  position: relative; //For: Overlay & Icon
+
+  // OVERLAY DIMMER
+  @if ($overlay == true) {
+    &:before {
+      @include transition();
+      @include position(absolute, $top:0, $right:0, $bottom:0, $left:0);
+      content: '';
+      background: $overlay-color;
+      opacity: 0;
+    }
+    &:hover {
+      &:before{
+        opacity: $overlay-opacity;
+      }
+    }
+  }
+
+  // OVERLAY ICON
+  @if ($icon != null or $icon != false) {
+
+    // Icon width & height presets
+    @if ($icon-width == xs)   {$icon-width: ($global-overlay-icon-width*0.45)}
+    @if ($icon-height == xs)  {$icon-height: ($global-overlay-icon-height*0.45)}
+    @if ($icon-width == s)    {$icon-width: ($global-overlay-icon-width*0.65)}
+    @if ($icon-height == s)   {$icon-height: ($global-overlay-icon-height*0.65)}
+    @if ($icon-width == m)    {$icon-width: $global-overlay-icon-width}
+    @if ($icon-height == m)   {$icon-height: $global-overlay-icon-height}
+    @if ($icon-width == l)    {$icon-width: ($global-overlay-icon-width*1.25)}
+    @if ($icon-height == l)   {$icon-height: ($global-overlay-icon-height*1.25)}
+    @if ($icon-width == xl)   {$icon-width: ($global-overlay-icon-width*1.45)}
+    @if ($icon-height == xl)  {$icon-height: ($global-overlay-icon-height*1.45)}
+    @if ($icon-width == xxl)  {$icon-width: ($global-overlay-icon-width*1.65)}
+    @if ($icon-height == xxl) {$icon-height: ($global-overlay-icon-height*1.65)}
+    // Icon border-radius presets
+    @if ($icon-border-radius == xs)  {$icon-border-radius: $border-radius-xs}
+    @if ($icon-border-radius == s)   {$icon-border-radius: $border-radius-s}
+    @if ($icon-border-radius == m)   {$icon-border-radius: $border-radius-m}
+    @if ($icon-border-radius == l)   {$icon-border-radius: $border-radius-l}
+    @if ($icon-border-radius == xl)  {$icon-border-radius: $border-radius-xl}
+    @if ($icon-border-radius == xxl) {$icon-border-radius: $border-radius-xxl}
+    
+    // Icon Output
+    @include icon($icon: $icon, $color: $icon-color, $size: $icon-size, $position: after);
+
+    &:after {
+      @include transition();
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      top: calc(50% - #{$icon-height*0.5});
+      left: calc(50% - #{$icon-width*0.5});
+
+      height: $icon-height;
+      width: $icon-width;
+      border: $icon-border;
+      border-radius: $icon-border-radius;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    &:hover {
+      &:after{
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+

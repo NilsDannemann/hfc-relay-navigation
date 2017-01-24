@@ -1,0 +1,23 @@
+//=====================================*/
+// IMPORTS
+//=====================================*/
+@import "../navigation.variables.scss";
+@import "../navigation.scss";
+
+
+
+/* =======================================*/
+/*
+/*
+/* DEMO STYLES
+/*
+/*
+/* =======================================*/
+body {
+	@include container();
+	@include respond-below(xxl) {padding: 0 $whitespace;}
+	h3 {border-top: $border; text-align: center; padding: $whitespace 0 ($whitespace*0.5) 0; margin-top: ($whitespace*2);}
+	.demo-title {text-align: center; margin: ($whitespace*10) auto 0 auto; font-size: $font-size-xxl;}
+	.demo-subtitle {text-align: center; margin: auto; font-size: $font-size-xl;}
+	.demo-image {display: block; margin: auto; padding: ($whitespace*3) 0 ($whitespace*2) 0;}
+}

@@ -1,0 +1,31 @@
+.app-nav {
+  background-color: $color-spaceblack;
+  color: white;
+  a {padding: $whitespace;}
+  &__dropdown {
+  	@include transition();
+  	background: $color-blue;
+  	opacity: 0;
+  	transform: translateY(10px);
+  	&.show {opacity: 1;transform: translateY(0px);}
+  }
+  &__dropdown-toggle {}
+
+  .has-submenu {
+    > ul {
+    	@include transition();
+    	opacity: 0;
+    	transform: translateY(10px);
+    	&.show{opacity: 1;transform: translateY(0px);}
+    }
+
+    .has-submenu {
+      ul {
+        @include transition();
+        opacity: 0;
+        transform: translateY(10px);
+      	&.show {opacity: 1;transform: translateY(0px);}
+      }
+    }
+  }
+}

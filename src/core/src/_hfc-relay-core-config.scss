@@ -1,0 +1,227 @@
+/* =======================================*/
+/*
+/*
+/* COLORS
+/*
+/*
+/* =======================================*/
+
+/*
+  Description & Documentation here
+*/
+
+/* =======================================*/
+/* Color Defaults
+/* =======================================*/
+$color-black        : #333333 !default;
+$color-spaceblack   : #171F2D !default;
+$color-grey         : #efefef !default;
+$color-spacegrey    : #a7adba !default;
+
+$color-red          : #F44336 !default;
+$color-pink         : #E91E63 !default;
+$color-purple       : #9C27B0 !default;
+
+$color-lightblue    : #03A9F4 !default;
+$color-blue         : #2196F3 !default;
+$color-darkblue     : #1e70cd !default;
+
+$color-indigo       : #3F51B5 !default;
+$color-cyan         : #00BCD4 !default;
+$color-teal         : #009688 !default;
+
+$color-green        : #4CAF50 !default;
+$color-lightgreen   : #8BC34A !default;
+$color-lime         : #CDDC39 !default;
+
+$color-yellow       : #FFEB3B !default;
+$color-amber        : #FFC107 !default;
+$color-orange       : #FF9800 !default;
+
+/* =======================================*/
+/* Color Hooks
+/* =======================================*/
+$color-brand            : $color-blue !default;
+$color-brand-secondary  : $color-darkblue !default;
+$color-headline         : $color-black !default;
+$color-text             : lighten($color-black, 15%) !default;
+
+
+
+
+
+/* =======================================*/
+/*
+/*
+/* LAYOUT
+/*
+/*
+/* =======================================*/
+
+/*
+  Description & Documentation here
+*/
+
+/* =======================================*/
+/* Spacing
+/* =======================================*/
+$whitespace: 20px !default;
+$width-sidebar: 325px !default;
+
+/* =======================================*/
+/* Breakpoints
+/* =======================================*/
+$breakpoints: (
+  'xs'  : 0px,
+  's'   : 485px,
+  'm'   : 650px,
+  'l'   : 800px,
+  'xl'  : 960px,
+  'xxl' : 1275px
+) !default;
+
+/* =======================================*/
+/* Debug
+/* =======================================*/
+$debug-grid    : false !default;
+$debug-queries : false !default;
+
+/* =======================================*/
+/* Element Queries (experimental)
+/* =======================================*/
+// Requires:
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.1.0/EQCSS.min.js"></script>
+$use-elementqueries: false !default;
+
+
+
+
+
+
+/* =======================================*/
+/*
+/*
+/* TYPOGRAPHY
+/*
+/*
+/* =======================================*/
+
+/*
+  Description & Documentation here
+*/
+
+/* =======================================*/
+/* Families
+/* =======================================*/
+
+/*
+BETTER WAY:
+https://github.com/Semantic-Org/Semantic-UI/blob/master/src/themes/default/globals/site.variables
+*/
+
+// @import url(https://fonts.googleapis.com/css?family=Raleway:500,600,400);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300);
+$font-family-headline : 'Raleway', sans-serif !default;
+$font-family-text     : 'Roboto', sans-serif !default;
+$font-family          : $font-family-text !default;
+
+/* =======================================*/
+/* Sizes
+/* =======================================*/
+$font-size-xs  : 10px !default;
+$font-size-s   : 12px !default;
+$font-size-m   : 14px !default;
+$font-size-l   : 16px !default;
+$font-size-xl  : 20px !default;
+$font-size-xxl : 28px !default;
+$font-size     : $font-size-m !default;
+
+/* =======================================*/
+/* Other
+/* =======================================*/
+$line-height   : 1.6 !default;
+
+
+
+
+
+
+/* =======================================*/
+/*
+/*
+/* UI
+/*
+/*
+/* =======================================*/
+
+/*
+  Description & Documentation here
+*/
+
+/* =======================================*/
+/* Icons
+/* =======================================*/
+$use-fontawesome: true !default;
+$use-ionicons: true !default;
+$use-linearicons: true !default;
+
+/* =======================================*/
+/* Borders
+/* =======================================*/
+$border-xs     : 1px solid darken($color-grey, 5%) !default;
+$border-s      : 3px solid darken($color-grey, 5%) !default;
+$border-m      : 5px solid darken($color-grey, 5%) !default;
+$border-l      : 10px solid darken($color-grey, 5%) !default;
+$border-xl     : 15px solid darken($color-grey, 5%) !default;
+$border-xxl    : 20px solid darken($color-grey, 5%) !default;
+$border        : $border-xs !default;
+
+/* =======================================*/
+/* Radius
+/* =======================================*/
+$border-radius-xs  : 2px !default;
+$border-radius-s   : 4px !default;
+$border-radius-m   : 6px !default;
+$border-radius-l   : 8px !default;
+$border-radius-xl  : 10px !default;
+$border-radius-xxl : 12px !default;
+$border-radius     : $border-radius-s !default;
+
+/* =======================================*/
+/* Shadows
+/* =======================================*/
+$box-shadow-xs     : 0px 1px 3px rgba(0, 0, 0, 0.2) !default;
+$box-shadow-s      : 0px 2px 5px rgba(0, 0, 0, 0.2) !default;
+$box-shadow-m      : 0px 4px 9px rgba(0, 0, 0, 0.2) !default;
+$box-shadow-l      : 0px 8px 18px rgba(0, 0, 0, 0.2) !default;
+$box-shadow-xl     : 0px 16px 32px rgba(0, 0, 0, 0.2) !default;
+$box-shadow-xxl    : 0px 32px 64px rgba(0, 0, 0, 0.2) !default;
+$box-shadow        : $box-shadow-s !default;
+
+/* =======================================*/
+/* Transitions
+/* =======================================*/
+$transition-type-sine  : ease-out-sine !default;
+$transition-type-quad  : ease-out-quad !default;
+$transition-type-cubic : ease-out-cubic !default;
+$transition-type-quart : ease-out-quart !default;
+$transition-type-quint : ease-out-quint !default;
+$transition-type-expo  : ease-out-expo !default;
+$transition-type-circ  : ease-out-circ !default;
+$transition-type-back  : ease-out-back !default;
+$transition-duration   : 450ms !default;
+$transition-type       : $transition-type-quint !default;
+
+/* =======================================*/
+/* Overlay
+/* =======================================*/
+$global-overlay                     : true !default;
+$global-overlay-color               : $color-brand !default;
+$global-overlay-opacity             : 0.85 !default;
+$global-overlay-icon                : 'fa-caret-right' !default;
+$global-overlay-icon-color          : #fff !default;
+$global-overlay-icon-width          : ($whitespace*3) !default;
+$global-overlay-icon-height         : ($whitespace*3) !default;
+$global-overlay-icon-size           : $font-size-m !default;
+$global-overlay-icon-border         : 2px solid $global-overlay-icon-color !default;
+$global-overlay-icon-border-radius  : 100% !default;

@@ -1,0 +1,189 @@
+/* =======================================*/
+/*
+/*
+/* VARIABLES
+/*
+/*
+/* =======================================*/
+
+/*
+  Description & Documentation here
+*/
+
+/* =======================================*/
+/* Color Defaults
+/* =======================================*/
+$color-black        : #333333;
+$color-spaceblack   : #1F2732;
+$color-grey         : #f1f1f1;
+$color-spacegrey    : #a7adba;
+
+$color-red          : #F44336;
+$color-pink         : #E91E63;
+$color-purple       : #9C27B0;
+
+$color-lightblue    : #03A9F4;
+$color-blue         : #2196F3;
+$color-darkblue     : #1e70cd;
+
+$color-indigo       : #3F51B5;
+$color-cyan         : #00BCD4;
+$color-teal         : #009688;
+
+$color-green        : #4CAF50;
+$color-lightgreen   : #8BC34A;
+$color-lime         : #CDDC39;
+
+$color-yellow       : #FFEB3B;
+$color-amber        : #FFC107;
+$color-orange       : #FF9800;
+
+/* =======================================*/
+/* Color Hooks
+/* =======================================*/
+$color-brand            : $color-spaceblack;
+$color-brand-secondary  : $color-red;
+$color-headline         : $color-black;
+$color-text             : lighten($color-black, 15%);
+
+
+
+
+
+/* =======================================*/
+/* Spacing
+/* =======================================*/
+$whitespace: 20px;
+
+
+/* =======================================*/
+/* Breakpoints
+/* =======================================*/
+$breakpoints: (
+  'xs'  : 0px,
+  's'   : 485px,
+  'm'   : 650px,
+  'l'   : 800px,
+  'xl'  : 960px,
+  'xxl' : 1285px
+);
+
+$app-mobile-breakpoint: 'l';
+
+/* =======================================*/
+/* Debug
+/* =======================================*/
+$debug-grid    : false;
+$debug-queries : false;
+
+/* =======================================*/
+/* Element Queries (experimental)
+/* =======================================*/
+// Requires:
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/eqcss/1.1.0/EQCSS.min.js"></script>
+$use-elementqueries: false;
+
+
+
+
+
+
+/* =======================================*/
+/* Families
+/* =======================================*/
+// @import url(https://fonts.googleapis.com/css?family=Raleway:500,600,400);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300);
+$font-family-headline         : 'Raleway', sans-serif;
+$font-family-headline-weight  : 600;
+$font-family-text             : 'Roboto', sans-serif;
+$font-family-text-weight      : 400;
+
+/* =======================================*/
+/* Sizes
+/* =======================================*/
+$font-size-xs  : 10px;
+$font-size-s   : 12px;
+$font-size-m   : 14px;
+$font-size-l   : 16px;
+$font-size-xl  : 20px;
+$font-size-xxl : 40px;
+$font-size     : $font-size-m;
+
+/* =======================================*/
+/* Other
+/* =======================================*/
+$line-height   : 1.6;
+
+
+
+
+
+
+/* =======================================*/
+/* Iconsets
+/* =======================================*/
+$use-fontawesome  : true;
+$use-ionicons     : true;
+$use-linearicons  : true;
+
+/* =======================================*/
+/* Borders
+/* =======================================*/
+$border-xs     : 1px solid darken($color-grey, 5%);
+$border-s      : 3px solid darken($color-grey, 5%);
+$border-m      : 5px solid darken($color-grey, 5%);
+$border-l      : 10px solid darken($color-grey, 5%);
+$border-xl     : 15px solid darken($color-grey, 5%);
+$border-xxl    : 20px solid darken($color-grey, 5%);
+$border        : $border-xs;
+
+/* =======================================*/
+/* Radius
+/* =======================================*/
+$border-radius-xs  : 2px;
+$border-radius-s   : 4px;
+$border-radius-m   : 6px;
+$border-radius-l   : 8px;
+$border-radius-xl  : 10px;
+$border-radius-xxl : 12px;
+$border-radius     : $border-radius-xs;
+
+/* =======================================*/
+/* Shadows
+/* =======================================*/
+$box-shadow-xs     : 0px 1px 3px rgba(0, 0, 0, 0.2);
+$box-shadow-s      : 0px 2px 5px rgba(0, 0, 0, 0.2);
+$box-shadow-m      : 0px 4px 9px rgba(0, 0, 0, 0.2);
+$box-shadow-l      : 0px 8px 18px rgba(0, 0, 0, 0.2);
+$box-shadow-xl     : 0px 16px 32px rgba(0, 0, 0, 0.2);
+$box-shadow-xxl    : 0px 16px 110px rgba(0, 0, 0, 0.15);
+$box-shadow        : $box-shadow-s;
+
+/* =======================================*/
+/* Transitions
+/* =======================================*/
+$transition-type-sine  : ease-out-sine;
+$transition-type-quad  : ease-out-quad;
+$transition-type-cubic : ease-out-cubic;
+$transition-type-quart : ease-out-quart;
+$transition-type-quint : ease-out-quint;
+$transition-type-expo  : ease-out-expo;
+$transition-type-circ  : ease-out-circ;
+$transition-type-back  : ease-out-back;
+$transition-duration   : 450ms;
+$transition-type       : $transition-type-quint;
+
+/* =======================================*/
+/* Overlay
+/* =======================================*/
+$global-overlay                     : true;
+$global-overlay-color               : $color-brand;
+$global-overlay-opacity             : 0.85;
+$global-overlay-icon                : 'fa-caret-right';
+$global-overlay-icon-color          : #fff;
+$global-overlay-icon-width          : ($whitespace*3);
+$global-overlay-icon-height         : ($whitespace*3);
+$global-overlay-icon-size           : $font-size-m;
+$global-overlay-icon-border         : 2px solid $global-overlay-icon-color;
+$global-overlay-icon-border-radius  : 100%;
+

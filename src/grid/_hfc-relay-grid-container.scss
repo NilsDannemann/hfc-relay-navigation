@@ -1,0 +1,10 @@
+/* =======================================*/
+/*
+/* CONTAINER
+/*
+/* =======================================*/
+
+@mixin container() {
+	max-width: map-get($breakpoints, xxl);
+	margin: 0 auto;
+}

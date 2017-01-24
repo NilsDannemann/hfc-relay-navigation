@@ -1,0 +1,88 @@
+/* =======================================*/
+/*
+/* UI KIT - ARROW
+/*
+/* =======================================*/
+
+@mixin arrow($direction: up, $align: center, $color: $color-brand, $size: $whitespace/2) {
+  position: relative;
+  
+  &:before{
+    content: " ";
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    pointer-events: none;
+    position: absolute;
+    border-width: $size;
+    
+    // Up
+    @if $direction == 'up' {
+      bottom: 100%;
+      border-bottom-color: $color;
+
+      // Alignment
+      @if $align == 'center' {
+        top: inherit;
+        left: 50%;
+        right: inherit;
+        margin: 0 0 0 (-$size);
+      } @else if $align == 'left' {
+        left: $whitespace;
+      } @else if $align == 'right' {
+        right: $whitespace;
+      }
+    }
+    // Down
+    @if $direction == 'down' {
+      top: 100%;
+      border-top-color: $color;
+
+      // Alignment
+      @if $align == 'center' {
+        left: 50%;
+        bottom: inherit;
+        right: inherit;
+        margin: 0 0 0 (-$size);
+      } @else if $align == 'left' {
+        left: $whitespace;
+      } @else if $align == 'right' {
+        right: $whitespace;
+      }
+    }
+    // Left
+    @if $direction == 'left' {
+      right: 100%;
+      border-right-color: $color;
+
+      // Alignment
+      @if $align == 'center' {
+        top: 50%;
+        left: inherit;
+        bottom: inherit;
+        margin: (-$size) 0 0 0;
+      } @else if $align == 'top' {
+        top: $whitespace;
+      } @else if $align == 'bottom' {
+        bottom: $whitespace;
+      }
+    }
+    // Right
+    @if $direction == 'right' {
+      left: 100%;
+      border-left-color: $color;
+
+      // Alignment
+      @if $align == 'center' {
+        top: 50%;
+        bottom: inherit;
+        right: inherit;
+        margin: (-$size) 0 0 0;
+      } @else if $align == 'top' {
+        top: $whitespace;
+      } @else if $align == 'bottom' {
+        bottom: $whitespace;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "hfc-relay-core",
+  "version": "0.0.2",
+  "description": "HFC Relay Core (SCSS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nils Dannemann <ndannemann@gmail.com> (http://www.hfci.de)",
+  "license": "ISC"
+}

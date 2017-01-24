@@ -1,0 +1,30 @@
+/* =======================================*/
+/*
+/* CORE - HELPERS
+/*
+/* =======================================*/
+
+/*
+  Description & Documentation here
+*/
+
+/* =======================================*/
+/* POSITION SHORTHAND
+/* =======================================*/
+
+@mixin position($position: relative, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  @if $top != null {
+    top: $top;
+  }
+  @if $right != null {
+    right: $right;
+  }
+  @if $bottom != null {
+    bottom: $bottom;
+  }
+  @if $left != null {
+    left: $left;
+  }
+}
+

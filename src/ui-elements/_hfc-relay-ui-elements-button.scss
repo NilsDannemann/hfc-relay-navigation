@@ -1,0 +1,70 @@
+/* =======================================*/
+/*
+/* UI ELEMENTS - BUTTON
+/*
+/* =======================================*/
+
+@mixin button(
+  $size: null,
+  $color: null,
+  $icon: null,
+  $font-size: null,
+  $padding: ($whitespace*0.5) $whitespace
+  ) {
+
+  //=====================================*/
+  // SIZE
+  //=====================================*/
+  @if ($size == xs)  {
+    $font-size: $font-size-xs; 
+    $padding: ($whitespace*0.25) ($whitespace*0.5);
+  }
+  @if ($size == s)   {
+    $font-size: $font-size-s; 
+    $padding: ($whitespace*0.35) ($whitespace*0.75);
+  }
+  @if ($size == null or $size == m)   {
+    $font-size: $font-size-m; 
+    $padding: ($whitespace*0.5) $whitespace;
+  }
+  @if ($size == l)   {
+    $font-size: $font-size-l; 
+    $padding: ($whitespace*0.65) ($whitespace*1.15);
+  }
+  @if ($size == xl)  {
+    $font-size: $font-size-xl; 
+    $padding: ($whitespace*0.75) ($whitespace*1.25);
+  }
+  @if ($size == xxl) {
+    $font-size: $font-size-xxl; 
+    $padding: ($whitespace*0.85) ($whitespace*1.35);
+  }
+  
+  //=====================================*/
+  // STYLES
+  //=====================================*/
+  @include transition();
+  display: inline-block;
+  font-size: $font-size;
+  color: $color-text;
+  padding: $padding;
+  border: $border;
+  border-radius: $border-radius;
+  background: #fff; 
+  text-align: center;
+  cursor: pointer;
+  outline: 0;
+  vertical-align: baseline;
+  
+  //=====================================*/
+  // COLOR
+  //=====================================*/
+  @if ($color != null) {
+    color: #fff;
+    background: $color;
+    border: 0;
+    &:hover, &.current, &.active {
+      background: darken($color, 10%);
+    };
+  }
+}
