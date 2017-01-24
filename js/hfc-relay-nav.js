@@ -24,6 +24,8 @@ class HFCRelayNav {
       item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
         var parent = event.target.parentNode;
 
+        console.log(item.getBoundingClientRect());
+
         root._toggleClass(parent, 'is-open');
         root._toggleClass(parent.querySelector('ul'), 'show');
       });

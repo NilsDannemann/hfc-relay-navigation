@@ -18,6 +18,8 @@
     	opacity: 0;
     	transform: translateY(10px);
     	&.show{opacity: 1;transform: translateY(0px);}
+    	&.show-right{}
+      	&.show-left{}
     }
 
     .has-submenu {
@@ -26,6 +28,8 @@
         opacity: 0;
         transform: translateY(10px);
       	&.show {opacity: 1;transform: translateY(0px);}
+      	&.show-right{}
+      	&.show-left{}
       }
     }
   }

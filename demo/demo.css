@@ -7926,6 +7926,9 @@ hr {
       .app-nav .has-submenu .has-submenu ul.show {
         visibility: visible;
         pointer-events: all; }
+      .app-nav .has-submenu .has-submenu ul.from-left {
+        right: 100%;
+        left: inherit; }
 
 /*
  * DRAWER

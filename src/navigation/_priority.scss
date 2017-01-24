@@ -19,6 +19,7 @@
       visibility: hidden;
       pointer-events: none;
       &.show {visibility: visible; pointer-events: all;}
+      &.from-left{}
     }
 
     .has-submenu {
@@ -32,6 +33,7 @@
         visibility: hidden;
         pointer-events: none;
         &.show {visibility: visible; pointer-events: all;}
+        &.from-left{right: 100%; left: inherit;}
       }
     }
   }
