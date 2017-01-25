@@ -1,54 +1,27 @@
 .app-nav {
+	/*
+	 * PAINTJOB
+	*/
 	background-color: $color-spaceblack;
 	color: white;
 	a {padding: $whitespace;}
-	ul {list-style-type: none; padding:0;}
-	ul:not(:first-child) {background: rgba(33, 150, 243, 0.86);}
-
+	ul {list-style-type: none; padding:0; &:not(:first-child) {background: $color-blue;}
+	}
+	
 	/*
 	 * TRANSITIONS
 	*/
-	&__dropdown {
+	ul:not(:first-child) {
 		@include transition();
 		opacity: 0;
-		&.show {opacity: 1;}
-	}
-	.has-submenu {
-		ul {
-			@include transition();
-			opacity: 0;
-			&.show{opacity: 1;}
+		// For: Transitions - Flyout 
+		@include respond-above(m) {transform: translateY(10px);}
+		// For: Transitions - Drawer 
+		@include respond-below(m) {transform: translateX(50vw);}
+		&.show{
+			opacity: 1; 
+			transform: translate(0,0);
 		}
 	}
-
-	/*
-	 * FLYOUT
-	*/
-	@include respond-above(m) {
-	  .app-nav {
-	    
-	    .has-submenu {
-	      ul {
-	        &.from-left {}
-	        &:not(.from-left) {}
-	      }
-	    }
-	    // For: 1st-level Flyout
-	    > ul > .has-submenu > ul {
-	      &:not(.from-left) {}
-	    }
-	  }
-	}
-
-	/*
-	 * DRAWER
-	*/
-	@include respond-below(m) {
-	  .app-nav {
-	    
-	    ul {
-	    	transform: translate(-50px 0);
-	    }
-	  }
-	}
 }
+

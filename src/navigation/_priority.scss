@@ -2,56 +2,59 @@
  * BASE STUFF
 */
 .app-nav {
-  .has-submenu {
-    @include icon('fa-caret-down', $position: after, $margin: 0 $whitespace 0 (-$whitespace*0.5));
-    ul:not(.show) {
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .back {
-      @include respond-above(m) {display: none;}
-    }
-  }
+	.has-submenu {
+		@include icon('fa-caret-right', $position: after, $margin: 0 $whitespace 0 (-$whitespace*0.5));
+		&::after{
+			content:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='10' viewBox='0 0 12 24'%3E%3Cpath fill='%23fff' d='M0,0.686L11.314,12,0,23.314V0.686Z'/%3E%3C/svg%3E ");
+		}
+	    
+		ul:not(.show) {
+			visibility: hidden;
+			pointer-events: none;
+		}
+		.back {
+			@include respond-above(m) {display: none;}
+		}
+	}
 }
 
 /*
  * FLYOUT
 */
 @include respond-above(m) {
-  .app-nav {
-    
-    .has-submenu {
-      position: relative;      
-      ul {
-        position: absolute;
-        top: 0;
-        &.from-left {right: 100%;}
-        &:not(.from-left) {left: 100%;}
-      }
-    }
-    // For: 1st-level Flyout
-    > ul > .has-submenu > ul {
-      top: initial;
-      &:not(.from-left) {right: 0; left: initial;}
-    }
-  }
+	.app-nav {
+		.has-submenu {
+			position: relative;      
+			ul {
+				position: absolute;
+				top: 0;
+				&.from-left {right: 100%;}
+				&:not(.from-left) {left: 100%;}
+			}
+		}
+		// For: 1st-level Flyout
+		> ul > .has-submenu > ul {
+			top: initial;
+			&:not(.from-left) {right: 0; left: initial;}
+		}
+	}
 }
 
 /*
  * DRAWER
 */
 @include respond-below(m) {
-  .app-nav {
-    
-    ul {
-      width: 50vw;
-      min-width: 300px;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      overflow-y: scroll;
-    }
-  }
+	.app-nav {
+	
+		ul {
+			width: 50vw;
+			min-width: 300px;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			overflow-y: scroll;
+		}
+	}
 }
 
 
@@ -59,50 +62,48 @@
  * PRIORITY
 */
 .priority-nav {
-  white-space: nowrap;
-  > ul, > ul > li {display: inline-block; padding: 0;}
-  a {display: inline-block; color: inherit;}
+	white-space: nowrap;
+	> ul, > ul > li {display: inline-block; padding: 0;}
+	a {display: inline-block; color: inherit;}
 
-  & &__dropdown-toggle {
-    @include position(relative);
-    padding: 23px;
-  }
+	& &__dropdown-toggle {
+		@include position(relative);
+		padding: 23px;
+	}
 
-  &__dropdown {
-    @include position(absolute, $right: 0);
-    padding: 0;
-    visibility: hidden;
-    list-style-type: none;
+	&__dropdown {
+		@include position(absolute, $right: 0);
+		padding: 0;
+		list-style-type: none;
+		&:not(.show) {visibility: hidden;}
+	}
 
-    &.show {visibility: visible;}
-  }
+	&__dropdown-toggle {
+		@include icon('fa-bars', $margin: 0 10px 0 0);
+		position: absolute;
+		visibility: hidden;
+		outline: none;
+		display: inline-block;
+		border: none;
+		background: none;
+		color: inherit;
+		cursor: pointer;
 
-  &__dropdown-toggle {
-    @include icon('fa-bars', $margin: 0 10px 0 0);
-    position: absolute;
-    visibility: hidden;
-    outline: none;
-    display: inline-block;
-    border: none;
-    background: none;
-    color: inherit;
-    cursor: pointer;
+		&::after { 
+			@include respond-above(m) {
+				content: attr(prioritynav-count);
+				@include grid($justify: center, $align: center);
+				width: 20px;
+				height: 20px;
+				@include position(absolute, $top:10px, $right:-10px);
+				font-size: $font-size-s;
+				background: $color-blue;
+				font-weight: bold;
+			}
+		}
+	}
 
-    &::after { 
-      @include respond-above(m) {
-        content: attr(prioritynav-count);
-        @include grid($justify: center, $align: center);
-        width: 20px;
-        height: 20px;
-        @include position(absolute, $top:10px, $right:-10px);
-        font-size: $font-size-s;
-        background: $color-blue;
-        font-weight: bold;
-      }
-    }
-  }
-
-  &__wrapper {display: inline-block; @include respond-above(m) { position: relative;}}
-  &-is-visible {visibility: visible;}
-  &-is-hidden  {visibility: hidden;}
+	&__wrapper {display: inline-block; @include respond-above(m) { position: relative;}}
+	&-is-visible {visibility: visible;}
+	&-is-hidden  {visibility: hidden;}
 }

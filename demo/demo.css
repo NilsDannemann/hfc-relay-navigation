@@ -7883,11 +7883,14 @@ hr {
  * BASE STUFF
 */
 .app-nav .has-submenu::after {
-  content: "";
+  content: "";
   font-family: "FontAwesome";
   font-size: 14px;
   font-weight: normal;
   margin: 0 20px 0 -10px; }
+
+.app-nav .has-submenu::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='10' viewBox='0 0 12 24'%3E%3Cpath fill='%23fff' d='M0,0.686L11.314,12,0,23.314V0.686Z'/%3E%3C/svg%3E "); }
 
 .app-nav .has-submenu ul:not(.show) {
   visibility: hidden;
@@ -7946,10 +7949,9 @@ hr {
     position: absolute;
     right: 0;
     padding: 0;
-    visibility: hidden;
     list-style-type: none; }
-    .priority-nav__dropdown.show {
-      visibility: visible; }
+    .priority-nav__dropdown:not(.show) {
+      visibility: hidden; }
   .priority-nav__dropdown-toggle {
     position: absolute;
     visibility: hidden;
@@ -7992,37 +7994,33 @@ hr {
     visibility: hidden; }
 
 .app-nav {
+  /*
+	 * PAINTJOB
+	*/
   background-color: #1F2732;
   color: white;
   /*
 	 * TRANSITIONS
-	*/
-  /*
-	 * FLYOUT
-	*/
-  /*
-	 * DRAWER
 	*/ }
   .app-nav a {
     padding: 20px; }
   .app-nav ul {
     list-style-type: none;
     padding: 0; }
+    .app-nav ul:not(:first-child) {
+      background: #2196F3; }
   .app-nav ul:not(:first-child) {
-    background: rgba(33, 150, 243, 0.86); }
-  .app-nav__dropdown {
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0; }
-    .app-nav__dropdown.show {
-      opacity: 1; }
-  .app-nav .has-submenu ul {
-    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0; }
-    .app-nav .has-submenu ul.show {
-      opacity: 1; }
-  @media only screen and (max-width: 650px) {
-    .app-nav .app-nav ul {
-      transform: translate(-50px 0); } }
+    @media only screen and (min-width: 650px) {
+      .app-nav ul:not(:first-child) {
+        transform: translateY(10px); } }
+    @media only screen and (max-width: 650px) {
+      .app-nav ul:not(:first-child) {
+        transform: translateX(50vw); } }
+    .app-nav ul:not(:first-child).show {
+      opacity: 1;
+      transform: translate(0, 0); }
 
 /* =======================================*/
 /*
