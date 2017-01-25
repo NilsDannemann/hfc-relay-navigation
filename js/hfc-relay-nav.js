@@ -75,12 +75,9 @@ class HFCRelayNav {
      */
     document.addEventListener('click', (event) => {
       if (!root._getClosest(event.target, '.has-submenu') && event.target !== event.target.querySelector('.has-submenu')) {
-        let uls = selector.querySelectorAll('ul.show');
-        if(uls.length > 0) {
-          root._map(uls, (item) => {
-            root._toggleClass(item, 'show');
-          });
-        }
+        root._map(submenu, (item) => {
+          root._toggleClass( item.querySelector('ul.show'), 'show');
+        });
       }
     });
 
