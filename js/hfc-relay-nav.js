@@ -79,17 +79,17 @@ class HFCRelayNav {
         root._map(elementsToHide, (element) => {
           root._toggleClass(element, 'show');
         });
+      } else {
+        let elements = selector.querySelectorAll('ul.show');
 
-
-
-        // if(hide) {
-        //   root._map(hide, (item) => {
-        //      root._toggleClass(item.querySelector('ul.show'), 'show');
-        //   });
-        // }
-        // root._map(event.target, (item) => {
-        //   root._toggleClass(item.querySelector('ul'), 'show');
-        // });
+        root._map(elements, (element) => {
+          if(element.parentNode !== event.target.parentNode) {
+            // root._toggleClass(element, 'show');
+          }
+          // root._getClosest(element.parentNode, '.is-open')
+          // if(root._getClosest(, 'ul') != element) console.log(123);
+          // console.log(element, event.target.parentNode.querySelector('ul'));
+        });
       }
     });
 
