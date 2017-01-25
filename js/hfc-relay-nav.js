@@ -50,7 +50,7 @@ class HFCRelayNav {
     let submenu = selector.querySelectorAll('.has-submenu');
     root._map(submenu, (item) => {
       item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
-        var parent = event.target.parentNode;
+        let parent = event.target.parentNode;
         let classNames = ['show'];
         let right = parseInt(item.getElementsByTagName('ul')[0].getBoundingClientRect().right);
         let maxWidth = root.options.vpWidth;
@@ -74,10 +74,22 @@ class HFCRelayNav {
      * Remove when clicked outside dropdown
      */
     document.addEventListener('click', (event) => {
-      if (!root._getClosest(event.target, '.has-submenu') && event.target !== event.target.querySelector('.has-submenu')) {
-        root._map(submenu, (item) => {
-          root._toggleClass( item.querySelector('ul.show'), 'show');
+      if (!root._getClosest(event.target, '.has-submenu') && !root._getClosest(event.target, '.priority-nav-is-visible') && event.target !== event.target.querySelector('.has-submenu')) {
+        let elementsToHide = selector.querySelectorAll('ul.show');
+        root._map(elementsToHide, (element) => {
+          root._toggleClass(element, 'show');
         });
+
+
+
+        // if(hide) {
+        //   root._map(hide, (item) => {
+        //      root._toggleClass(item.querySelector('ul.show'), 'show');
+        //   });
+        // }
+        // root._map(event.target, (item) => {
+        //   root._toggleClass(item.querySelector('ul'), 'show');
+        // });
       }
     });
 
