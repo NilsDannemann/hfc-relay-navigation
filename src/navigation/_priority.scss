@@ -8,7 +8,9 @@
       visibility: hidden;
       pointer-events: none;
     }
-    .back {display: none;}
+    .back {
+      @include respond-above(m) {display: none;}
+    }
   }
 }
 
@@ -17,20 +19,20 @@
 */
 @include respond-above(m) {
   .app-nav {
-
+    
     .has-submenu {
-      position: relative;
-
+      position: relative;      
       ul {
         position: absolute;
-        right: 0;
-        
-        ul {
-          top: 0;
-          &.from-left {right: 100%;}
-          &:not(.from-left) {right: inherit; left: 100%;}
-        }
+        top: 0;
+        &.from-left {right: 100%;}
+        &:not(.from-left) {left: 100%;}
       }
+    }
+    // For: 1st-level Flyout
+    > ul > .has-submenu > ul {
+      top: initial;
+      &:not(.from-left) {right: 0; left: initial;}
     }
   }
 }
@@ -39,36 +41,22 @@
  * DRAWER
 */
 @include respond-below(m) {
-
   .app-nav {
-
-    &__dropdown {
-      @include position(absolute, $top:0, $right:-50vw, $bottom:0);
+    
+    ul {
       width: 50vw;
-      // opacity: 1 !important;
-      // transform: translate(50vw,0);
-      &.show{opacity: 1; transform:translate(0,0) !important;}
-      
-      .back {
-        display: block;
-      }
-
-      .has-submenu {
-          position: initial !important; //Fixme: ugly important
-          ul{
-            @include position(absolute, $top:0, $right:0, $bottom:0);
-            width: 50vw;
-            opacity: 0;
-            &.show{opacity: 1; transform:translate(20px,0) !important;}
-          }
-      }
+      min-width: 300px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: scroll;
     }
   }
 }
 
 
 /*
- * PRIORITY STUFF
+ * PRIORITY
 */
 .priority-nav {
   white-space: nowrap;

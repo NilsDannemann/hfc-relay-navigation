@@ -3,36 +3,52 @@
 	color: white;
 	a {padding: $whitespace;}
 	ul {list-style-type: none; padding:0;}
-	ul ul {background: rgba(33, 150, 243, 0.86);}
+	ul:not(:first-child) {background: rgba(33, 150, 243, 0.86);}
 
 	/*
 	 * TRANSITIONS
 	*/
 	&__dropdown {
 		@include transition();
-		background: rgba(33, 150, 243, 0.86);
 		opacity: 0;
-		// opacity: 1 !important; visibility: visible !important;
 		&.show {opacity: 1;}
 	}
 	.has-submenu {
-		> ul {
+		ul {
 			@include transition();
 			opacity: 0;
-			// opacity: 1 !important; visibility: visible !important;
 			&.show{opacity: 1;}
-			&.show-right{}
-			&.show-left{}
 		}
+	}
 
-		.has-submenu {
-			ul {
-				@include transition();
-				opacity: 0;
-				&.show {opacity: 1;}
-				&.show-right{}
-				&.show-left{}
-			}
-		}
+	/*
+	 * FLYOUT
+	*/
+	@include respond-above(m) {
+	  .app-nav {
+	    
+	    .has-submenu {
+	      ul {
+	        &.from-left {}
+	        &:not(.from-left) {}
+	      }
+	    }
+	    // For: 1st-level Flyout
+	    > ul > .has-submenu > ul {
+	      &:not(.from-left) {}
+	    }
+	  }
+	}
+
+	/*
+	 * DRAWER
+	*/
+	@include respond-below(m) {
+	  .app-nav {
+	    
+	    ul {
+	    	transform: translate(-50px 0);
+	    }
+	  }
 	}
 }
