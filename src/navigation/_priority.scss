@@ -2,12 +2,17 @@
  * BASE STUFF
 */
 .app-nav {
+	a {
+		width: 100%;
+		padding: $whitespace;
+	}
+
 	.has-submenu {
-		@include icon('fa-caret-right', $position: after, $margin: 0 $whitespace 0 (-$whitespace*0.5));
 		&::after{
-			content:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='10' viewBox='0 0 12 24'%3E%3Cpath fill='%23fff' d='M0,0.686L11.314,12,0,23.314V0.686Z'/%3E%3C/svg%3E ");
+			content: '+';
+			margin: 0 20px 0 -20px;
+			display: inline-block;
 		}
-	    
 		ul:not(.show) {
 			visibility: hidden;
 			pointer-events: none;
@@ -45,7 +50,6 @@
 */
 @include respond-below(m) {
 	.app-nav {
-	
 		ul {
 			width: 50vw;
 			min-width: 300px;
@@ -79,7 +83,10 @@
 	}
 
 	&__dropdown-toggle {
-		@include icon('fa-bars', $margin: 0 10px 0 0);
+		&::before {
+			content: '+';
+			margin-right: 10px;
+		}
 		position: absolute;
 		visibility: hidden;
 		outline: none;

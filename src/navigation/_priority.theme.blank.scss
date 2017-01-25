@@ -4,10 +4,20 @@
 	*/
 	background-color: $color-spaceblack;
 	color: white;
-	a {padding: $whitespace;}
-	ul {list-style-type: none; padding:0; &:not(:first-child) {background: $color-blue;}
+	ul {list-style-type: none; padding:0; &:not(:first-child) {background: $color-blue;}}
+	/*
+	 * ICONS
+	*/
+	&__dropdown-toggle {
+		&::before {content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='10' viewBox='0 0 30 24'%3E%3Cpath fill='%23fff' d='M2,0H28a2,2,0,0,1,0,4H2A2,2,0,0,1,2,0ZM2,10H28a2,2,0,0,1,0,4H2A2,2,0,0,1,2,10ZM2,20H28a2,2,0,0,1,0,4H2A2,2,0,0,1,2,20Z'/%3E%3C/svg%3E ");}
 	}
-	
+	.has-submenu {
+		&::after{content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='9' viewBox='0 0 12 24'%3E%3Cpath fill='%23fff' d='M0,0.686L11.314,12,0,23.314V0.686Z'/%3E%3C/svg%3E ");}
+	}
+	> ul > .has-submenu {
+		&::after{transform: rotate(90deg);}
+	}
+
 	/*
 	 * TRANSITIONS
 	*/
