@@ -1,45 +1,39 @@
 /*
- * RESET STUFF
-*/
-.app-nav {
-  ul {list-style-type: none; padding:0;}
-  ul ul {background: $color-blue;}
-}
-/*
  * BASE STUFF
 */
 .app-nav {
-  
   .has-submenu {
     @include icon('fa-caret-down', $position: after, $margin: 0 $whitespace 0 (-$whitespace*0.5));
-    position: relative;
-    > ul {
-      position: absolute;
-      right: 0;
+    ul:not(.show) {
       visibility: hidden;
       pointer-events: none;
-      &.show {visibility: visible; pointer-events: all;}
-      &.from-left{}
     }
+    .back {display: none;}
+  }
+}
+
+/*
+ * FLYOUT
+*/
+@include respond-above(m) {
+  .app-nav {
 
     .has-submenu {
-      @include icon('fa-caret-right', $position: after, $margin: 0 $whitespace 0 (-$whitespace*0.5));
       position: relative;
+
       ul {
         position: absolute;
-        right: inherit;
-        left: 100%;
-        top: 0;
-        visibility: hidden;
-        pointer-events: none;
-        &.show {visibility: visible; pointer-events: all;}
-        &.from-left{right: 100%; left: inherit;}
+        right: 0;
+        
+        ul {
+          top: 0;
+          &.from-left {right: 100%;}
+          &:not(.from-left) {right: inherit; left: 100%;}
+        }
       }
     }
   }
 }
-
-
 
 /*
  * DRAWER
@@ -49,27 +43,28 @@
   .app-nav {
 
     &__dropdown {
-      @include position(absolute, $top:0, $right:0, $bottom:0);
+      @include position(absolute, $top:0, $right:-50vw, $bottom:0);
       width: 50vw;
-      opacity: 0;
-      transform:translate(50vw,0) !important;
+      // opacity: 1 !important;
+      // transform: translate(50vw,0);
       &.show{opacity: 1; transform:translate(0,0) !important;}
+      
+      .back {
+        display: block;
+      }
 
       .has-submenu {
-          position: initial;
+          position: initial !important; //Fixme: ugly important
           ul{
             @include position(absolute, $top:0, $right:0, $bottom:0);
             width: 50vw;
             opacity: 0;
-            transform:translate(50vw,0) !important;
             &.show{opacity: 1; transform:translate(20px,0) !important;}
           }
       }
     }
   }
 }
-
-
 
 
 /*
