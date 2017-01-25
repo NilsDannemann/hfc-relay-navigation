@@ -1,86 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>HFC Relay - Navigation Demo</title>
-	<link rel="stylesheet" href="demo.css">
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<title>HFC Relay - Navigation Demo</title>
+		<link rel="stylesheet" href="demo.css">
+	</head>
+	<body>
 
-	<h1 class="demo-title">HFC Relay - Navigation</h1>
-	<p class="demo-subtitle">Priority - Multi Level Drawer<br><br><br></p>
-	<a href="https://www.regionalaustraliabank.com.au/" target="_blank" style="margin: auto;">Good Example</a>
+		<h1 class="demo-title">HFC Relay - Navigation</h1>
+		<p class="demo-subtitle">Priority - Multi Level Drawer<br><br><br></p>
+		<a href="https://www.regionalaustraliabank.com.au/" target="_blank" style="margin: auto;">Good Example</a>
 
-	<nav class="app-nav">
-        <ul>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li class="has-submenu"><a href="#">menu item</a>
-            	<ul>
-					<li><a href="#">menu item</a></li>
-					<li><a href="#">menu item</a></li>
-					<li class="has-submenu"><a href="#">menu item</a>
-						<ul>
-							<li><a href="#">menu item menu item</a></li>
-							<li class="has-submenu"><a href="#">menu item</a>
-								<ul>
-									<li><a href="#">menu item menu item menu item menu item menu item menu item menu item menu item</a></li>
-									<li><a href="#">menu item</a></li>
-									<li><a href="#">menu item</a></li>
-								</ul>
-							</li>
-							<li><a href="#">menu item</a></li>
-						</ul>
-					</li>
-            	</ul>
-            </li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-            <li><a href="#">menu item</a></li>
-        </ul>
-    </nav>
+		<nav class="app-nav">
+			<ul>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li class="has-submenu-old"><a href="#">menu item</a>
+					<ul>
+						<li><a href="#">menu item</a></li>
+						<li><a href="#">menu item</a></li>
+						<li class="has-submenu-old"><a href="#">menu item</a>
+							<ul>
+								<li><a href="#">menu item menu item</a></li>
+								<li class="has-submenu-old"><a href="#">menu item</a>
+									<ul>
+										<li><a href="#">menu item menu item menu item menu item menu item menu item menu item menu item</a></li>
+										<li><a href="#">menu item</a></li>
+										<li><a href="#">menu item</a></li>
+									</ul>
+								</li>
+								<li><a href="#">menu item</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+				<li><a href="#">menu item</a></li>
+			</ul>
+		</nav>
 
-	<!--[if lte IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+		<!--[if lte IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 
 
-	<!-- Priority NAV -->
-		<!-- <script src="../js/jquery.js"></script> -->
-		<script src="../js/priority-nav.js"></script>
-		<script>
-		    var nav = priorityNav.init({
-		        initClass:                  "js-priorityNav", // Class that will be printed on html element to allow conditional css styling.
-		        mainNavWrapper:             ".app-nav", // mainnav wrapper selector (must be direct parent from mainNav)
-		        mainNav:                    ".app-nav ul", // mainnav selector. (must be inline-block)
-		        navDropdownClassName:       "app-nav__dropdown", // class used for the dropdown - this is a class name, not a selector.
-		        navDropdownToggleClassName: "app-nav__dropdown-toggle", // class used for the dropdown toggle - this is a class name, not a selector.
-		        navDropdownLabel:           "Mehr", // Text that is used for the dropdown toggle.
-		        navDropdownBreakpointLabel: "Menu", //button label for navDropdownToggle when the breakPoint is reached.
-		        breakPoint:                 650, //amount of pixels when all menu items should be moved to dropdown to simulate a mobile menu
-		        throttleDelay:              50, // this will throttle the calculating logic on resize because i'm a responsible dev.
-		        offsetPixels:               0, // increase to decrease the time it takes to move an item.
-		        count:                      true, // prints the amount of items are moved to the attribute data-count to style with css counter.
+		<!-- Priority NAV -->
+			<!-- <script src="../js/jquery.js"></script> -->
+			<script src="../js/priority-nav.js"></script>
 
-		        //Callbacks
-		        moved: function () {}, // executed when item is moved to dropdown
-		        movedBack: function () {} // executed when item is moved back to main menu
-		    });
-		</script>
-	<!-- Priority NAV -->
+			<script type="text/javascript" src="../js/hfc-relay-nav.min.js"></script>
+			<script type="text/javascript">
 
-		<script type="text/javascript" src="../js/hfc-relay-nav.min.js"></script>
-		<script type="text/javascript">
-			var HFCRelayNav = new HFCRelayNav();
-			// HFCRelayNav.init('SELECTOR', {OPTIONS});
-			HFCRelayNav.init('.app-nav', {});
-		</script>
+				function initPriorityNav() {
+					var nav = priorityNav.init({
+						initClass:                  "js-priorityNav", // Class that will be printed on html element to allow conditional css styling.
+						mainNavWrapper:             ".app-nav", // mainnav wrapper selector (must be direct parent from mainNav)
+						mainNav:                    ".app-nav ul", // mainnav selector. (must be inline-block)
+						navDropdownClassName:       "app-nav__dropdown", // class used for the dropdown - this is a class name, not a selector.
+						navDropdownToggleClassName: "app-nav__dropdown-toggle", // class used for the dropdown toggle - this is a class name, not a selector.
+						navDropdownLabel:           "Mehr", // Text that is used for the dropdown toggle.
+						navDropdownBreakpointLabel: "Menu", //button label for navDropdownToggle when the breakPoint is reached.
+						breakPoint:                 650, //amount of pixels when all menu items should be moved to dropdown to simulate a mobile menu
+						throttleDelay:              50, // this will throttle the calculating logic on resize because i'm a responsible dev.
+						offsetPixels:               0, // increase to decrease the time it takes to move an item.
+						count:                      true, // prints the amount of items are moved to the attribute data-count to style with css counter.
 
-</body>
+						//Callbacks
+						moved: function () {}, // executed when item is moved to dropdown
+						movedBack: function () {} // executed when item is moved back to main menu
+					});
+				}
+
+				var HFCRelayNav = new HFCRelayNav();
+				// HFCRelayNav.init('SELECTOR', {OPTIONS});
+				HFCRelayNav.init('.app-nav', {
+					initCallback: function() {
+						initPriorityNav();
+					}
+				});
+			</script>
+		<!-- Priority NAV -->
+	</body>
 </html>

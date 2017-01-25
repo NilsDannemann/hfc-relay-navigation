@@ -2,12 +2,14 @@
 
 class HFCRelayNav {
   options = {
+    initCallback: () => {},
     vpHeight: false,
     vpWidth: false
   };
 
   init(sel, options) {
     const root = this;
+    let selector = document.querySelector(sel);
 
     // Settings options
     root._setViewport(); // assigning viewport options
@@ -20,12 +22,14 @@ class HFCRelayNav {
       root._setViewport();
     }, true);
 
+    //
+    this._applyClassToElement(selector, 'has-submenu');
+
     /**
      *  Toggle dropdown
      */
-    let selector = document.querySelector(sel);
     let submenu = selector.querySelectorAll('.has-submenu');
-    Array.from(submenu).forEach(item => {
+    Array.from(submenu).forEach((item) => {
       item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
         var parent = event.target.parentNode;
         let classNames = ['show'];
@@ -52,6 +56,9 @@ class HFCRelayNav {
         });
       }
     });
+
+    // running the callback after initializing
+    root.options.initCallback();
   };
 
   /**
@@ -128,4 +135,23 @@ class HFCRelayNav {
 
     return false;
   };
+
+
+  /**
+   * Apllys a class to a Element recursively
+   * @param {String} selector Selector to match against (class, ID, or data attribute)
+   * @param {String} class name to add
+   */
+   _applyClassToElement(selector, className) {
+    const root = this;
+    let lis = selector.querySelectorAll('li');
+
+    Array.prototype.map.call(lis, (li) => {
+      let length = li.childNodes.length;
+
+      if(length > 1) {
+        root._toggleClass(li, className);
+      }
+    });
+   }
 }
