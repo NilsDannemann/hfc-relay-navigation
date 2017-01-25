@@ -1,36 +1,38 @@
 .app-nav {
-  background-color: $color-spaceblack;
-  color: white;
-  a {padding: $whitespace;}
-  &__dropdown {
-  	@include transition();
-  	background: $color-blue;
-  	opacity: 0;
-  	transform: translateY(10px);
-  	&.show {opacity: 1;transform: translateY(0px);}
-  }
-  &__dropdown-toggle {}
+	background-color: $color-spaceblack;
+	color: white;
+	a {padding: $whitespace;}
+	ul {list-style-type: none; padding:0;}
+	ul ul {background: rgba(33, 150, 243, 0.86);}
 
-  .has-submenu {
-    > ul {
-    	box-shadow: $box-shadow, $box-shadow-xxl;
-    	@include transition();
-    	opacity: 0;
-    	transform: translateY(10px);
-    	&.show{opacity: 1;transform: translateY(0px);}
-    	&.show-right{}
-      	&.show-left{}
-    }
+	/*
+	 * TRANSITIONS
+	*/
+	&__dropdown {
+		@include transition();
+		background: rgba(33, 150, 243, 0.86);
+		opacity: 0;
+		// opacity: 1 !important; visibility: visible !important;
+		&.show {opacity: 1;}
+	}
+	.has-submenu {
+		> ul {
+			@include transition();
+			opacity: 0;
+			// opacity: 1 !important; visibility: visible !important;
+			&.show{opacity: 1;}
+			&.show-right{}
+			&.show-left{}
+		}
 
-    .has-submenu {
-      ul {
-        @include transition();
-        opacity: 0;
-        transform: translateY(10px);
-      	&.show {opacity: 1;transform: translateY(0px);}
-      	&.show-right{}
-      	&.show-left{}
-      }
-    }
-  }
+		.has-submenu {
+			ul {
+				@include transition();
+				opacity: 0;
+				&.show {opacity: 1;}
+				&.show-right{}
+				&.show-left{}
+			}
+		}
+	}
 }
