@@ -15,6 +15,11 @@ class HFCRelayNav {
     // merging options from the initialization
     root.options = Object.assign(root.options, options);
 
+    // changing the viewport options while resizing
+    window.addEventListener('resize', () => {
+      root._setViewport();
+    }, true);
+
     /**
      *  Toggle dropdown
      */
@@ -23,11 +28,16 @@ class HFCRelayNav {
     Array.from(submenu).forEach(item => {
       item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
         var parent = event.target.parentNode;
+        let classNames = ['show'];
+        let right = parseInt(item.getElementsByTagName('ul')[0].getBoundingClientRect().right);
+        let maxWidth = Math.min(root.options.vpWidth);
 
-        console.log(item.getBoundingClientRect());
+        if(right >= maxWidth) {
+          classNames.push('from-left');
+        }
 
         root._toggleClass(parent, 'is-open');
-        root._toggleClass(parent.querySelector('ul'), 'show');
+        root._toggleClass(parent.querySelector('ul'), classNames);
       });
     });
 
@@ -38,7 +48,7 @@ class HFCRelayNav {
       if (!root._getClosest(event.target, '.has-submenu') && event.target !== event.target.querySelector('.has-submenu')) {
         Array.from(submenu).forEach(item => {
           item.classList.remove('is-open');
-          item.querySelector('ul').classList.remove('show');
+          item.querySelector('ul').classList = '';
         });
       }
     });
@@ -47,24 +57,28 @@ class HFCRelayNav {
   /**
    * Toggle class on element
    * @param el
-   * @param className
+   * @param classNames
    */
-  _toggleClass(el, className) {
+  _toggleClass(el, classNames) {
     const root = this;
+    let type = typeof classNames;
 
-    if (el.classList) {
-      el.classList.toggle(className);
-    } else {
-      var classes = el.className.split(' ');
-      var existingIndex = classes.indexOf(className);
+    if(type === 'string') {
+      el.classList.toggle(classNames);
+    } else if(type === 'object') {
+      let classes = el.className.split(' ');
 
-      if (existingIndex >= 0) {
-        classes.splice(existingIndex, 1);
-      } else {
-        classes.push(className);
-      }
+      classNames.map((className) => {
+        let existingIndex = classes.indexOf(className);
 
-      el.className = classes.join(' ');
+        if (existingIndex >= 0) {
+          classes.splice(existingIndex, 1);
+        } else {
+          classes.push(className);
+        }
+
+        el.className = classes.join(' ');
+      });
     }
   };
 
