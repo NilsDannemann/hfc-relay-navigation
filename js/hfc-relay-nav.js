@@ -1,12 +1,23 @@
 'use strict';
 
+/**
+ * class HFCRelayNav
+ */
 class HFCRelayNav {
+  /**
+   * Options
+   */
   options = {
     initCallback: () => {},
     vpHeight: false,
     vpWidth: false
   };
 
+  /**
+   * Initilatization
+   * @param {String} Selector | Element
+   * @param {Object} Options
+   */
   init(sel, options) {
     const root = this;
     let selector = document.querySelector(sel);
@@ -44,10 +55,16 @@ class HFCRelayNav {
         let right = parseInt(item.getElementsByTagName('ul')[0].getBoundingClientRect().right);
         let maxWidth = root.options.vpWidth;
 
+        /**
+         * pushing menu to the left side when its outside the viewport
+         */
         if(right >= maxWidth) {
           classNames.push('from-left');
         }
 
+        /**
+         * toggleing some classes
+         */
         root._toggleClass(parent, 'is-open');
         root._toggleClass(parent.querySelector('ul'), classNames);
       });
@@ -58,10 +75,12 @@ class HFCRelayNav {
      */
     document.addEventListener('click', (event) => {
       if (!root._getClosest(event.target, '.has-submenu') && event.target !== event.target.querySelector('.has-submenu')) {
-        root._map(submenu, (item) => {
-          item.classList.remove('is-open');
-          item.querySelector('ul').classList = '';
-        });
+        let uls = selector.querySelectorAll('ul.show');
+        if(uls.length > 0) {
+          root._map(uls, (item) => {
+            root._toggleClass(item, 'show');
+          });
+        }
       }
     });
 
@@ -73,8 +92,8 @@ class HFCRelayNav {
 
   /**
    * Toggle class on element
-   * @param el
-   * @param classNames
+   * @param {String} el
+   * @param {String|Array} classNames
    */
   _toggleClass(el, classNames) {
     const root = this;
@@ -82,15 +101,24 @@ class HFCRelayNav {
     const action = (classes.indexOf('show') !== -1 ? 'hide' : 'show');
     let type = typeof classNames;
 
+    /**
+     * checking if the classNames are a string or object
+     */
     if(type === 'string') {
       el.classList.toggle(classNames);
     } else if(type === 'object') {
       let existingIndex = classes.indexOf('from-left');
 
+      /**
+       * removeing classes
+       */
       classNames.map((className) => {
         el.classList.toggle(className);
       });
 
+      /**
+       * little delay for smooth transitions
+       */
       if(existingIndex === 1) {
         setTimeout(() => {
           el.classList.toggle('from-left');
@@ -111,13 +139,16 @@ class HFCRelayNav {
   /**
    *  Returns the viewport width and height
    */
-  _setViewport(mode) {
+  _setViewport() {
     const root = this;
 
     const viewport = [];
     let height = false;
     let width = false;
 
+    /**
+     * setting some options for viewport calculations
+     */
     ['Width', 'Height'].map((name) => {
       let docVal = document.documentElement['client' + name];
       let winVal = window['inner' + name];
