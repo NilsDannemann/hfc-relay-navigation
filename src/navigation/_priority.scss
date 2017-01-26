@@ -2,10 +2,16 @@
  * BASE STUFF
 */
 html {overflow-x: hidden;}
+
+@include respond-below(m) {
+	body.pusher {}
+	body.pusher.is-open {transform: translateX(-50vw);}
+}
+
 .app-nav {
 	*, *::before, *::after{
+		box-sizing: border-box;
 		-webkit-tap-highlight-color: transparent;
-		-webkit-touch-callout: none;
 		outline: none;
 	}
 	display: flex;
@@ -26,6 +32,7 @@ html {overflow-x: hidden;}
 			pointer-events: none;
 		}
 		.back {
+			cursor: pointer;
 			@include respond-above(m) {display: none;}
 		}
 	}
@@ -63,7 +70,7 @@ html {overflow-x: hidden;}
 		}
 		ul {
 			width: 50vw;
-			min-width: 300px;
+			height: 100vh;
 			position: fixed;
 			top: 0;
 			bottom: 0;

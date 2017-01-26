@@ -11,7 +11,8 @@ class HFCRelayNav {
     initCallback: () => {},
     vpHeight: false,
     vpWidth: false,
-    backLinkText: 'Zurück'
+    backLinkText: 'Zurück',
+    pusher: true
   };
 
   /**
@@ -39,6 +40,13 @@ class HFCRelayNav {
     window.addEventListener('resize', () => {
       root._setViewport();
     }, true);
+
+    /**
+     * Pusher Logic
+     */
+     if(root.options.pusher) {
+      root._toggleClass(document.querySelector('body'), 'pusher');
+     }
 
     /**
      * Add submenu classes
@@ -91,6 +99,11 @@ class HFCRelayNav {
           root._toggleClass(openedDropdown, 'show');
           root._toggleClass(openedDropdown.parentNode, 'is-open');
         });
+
+        let body = document.querySelector('body');
+        if(root.options.pusher && body.classList.contains('is-open')) {
+         root._toggleClass(body, 'is-open');
+        }
       } else if(root._getClosest(event.target, '.priority-nav-is-visible')) {
         /**
          * Special behaivior for mobile nav trigger
@@ -100,10 +113,16 @@ class HFCRelayNav {
           root._toggleClass(openedLi.querySelector('ul.show'), 'show');
           root._toggleClass(openedLi, 'is-open');
         });
+        /**
+         * Pusher Logic
+         */
+        if(root.options.pusher) {
+         root._toggleClass(document.querySelector('body'), 'is-open');
+        }
+
       } else if(!event.target.classList.contains('back')) {
         root._map(openedDropdowns, (openedDropdown) => {
           let nearestLi = root._getClosest(event.target.parentNode, '.is-open');
-
           /**
            * Close all other opened dropdowns when opened a new
            */
