@@ -74,27 +74,31 @@ class HFCRelayNav {
      * Remove when clicked outside dropdown
      */
     document.addEventListener('click', (event) => {
+      let openedDropdowns = selector.querySelectorAll('ul.show');
       if (!root._getClosest(event.target, '.has-submenu') && !root._getClosest(event.target, '.priority-nav-is-visible') && event.target !== event.target.querySelector('.has-submenu')) {
         /**
          * close all opened dropdowns when clicking outside nav
          */
-        let elementsToHide = selector.querySelectorAll('ul.show');
-        // let elementsToHide = selector.querySelectorAll('li.is-open');
-        root._map(elementsToHide, (element) => {
-          root._toggleClass(element, 'show');
-          root._toggleClass(element.parentNode, 'is-open');
+        root._map(openedDropdowns, (openedDropdown) => {
+          root._toggleClass(openedDropdown, 'show');
+          root._toggleClass(openedDropdown.parentNode, 'is-open');
+        });
+      } else if(root._getClosest(event.target, '.priority-nav-is-visible')) {
+        let openedLis = selector.querySelectorAll('li.is-open');
+        root._map(openedLis, (openedLi) => {
+          root._toggleClass(openedLi.querySelector('ul.show'), 'show');
+          root._toggleClass(openedLi, 'is-open');
         });
       } else {
-        let openedDropdowns = selector.querySelectorAll('ul.show');
         root._map(openedDropdowns, (openedDropdown) => {
           let nearestLi = root._getClosest(event.target.parentNode, '.is-open');
 
           /**
-           * close all other openend dropdowns when opened a new
+           * close all other opened dropdowns when opened a new
            */
           if(openedDropdown.parentNode !== nearestLi && !openedDropdown.parentNode.contains(nearestLi)) {
             root._toggleClass(openedDropdown, 'show');
-            root._toggleClass(openedDropdown.parentNode, ['is-open']);
+            root._toggleClass(openedDropdown.parentNode, 'is-open');
           }
         });
       }
