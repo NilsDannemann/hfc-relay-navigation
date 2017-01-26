@@ -34,7 +34,7 @@ class HFCRelayNav {
     root.options = Object.assign(root.options, options);
 
     /**
-     * Changing the viewport options while resizing
+     * Changing the viewport options on resize
      */
     window.addEventListener('resize', () => {
       root._setViewport();
@@ -43,24 +43,22 @@ class HFCRelayNav {
     /**
      * Add submenu classes
      */
-    this._applyClassToElement(selector, 'has-submenu');
+    this._applySubmenuToElement(selector, 'has-submenu');
 
     /**
      * Toggle dropdown
      */
     let submenu = selector.querySelectorAll('.has-submenu');
     root._map(submenu, (item) => {
-      // item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
       item.querySelector('a:not(.back)').addEventListener('click', (event) => {
         let parent = event.target.parentNode;
         let classNames = ['show'];
         let right = parseInt(item.getElementsByTagName('ul')[0].getBoundingClientRect().right);
-        let maxWidth = root.options.vpWidth;
 
         /**
          * Pushing menu to the left side when its outside the viewport
          */
-        if(right >= maxWidth) {
+        if(right >= root.options.vpWidth) {
           classNames.push('from-left');
         }
 
@@ -77,6 +75,7 @@ class HFCRelayNav {
      */
     document.addEventListener('click', (event) => {
       let openedDropdowns = selector.querySelectorAll('ul.show');
+
       if (!root._getClosest(event.target, '.has-submenu') && !root._getClosest(event.target, '.priority-nav-is-visible') && event.target !== event.target.querySelector('.has-submenu') && !event.target.classList.contains('back')) {
         /**
          * Close all opened dropdowns when clicking outside nav
@@ -113,6 +112,10 @@ class HFCRelayNav {
      * Add eventlistener to back button to hide the submenu
      */
      let backLinks = selector.querySelectorAll('a.back');
+
+     /**
+      * Looping all links and add a eventlistener to it
+      */
      root._map(backLinks, (backLink) => {
       backLink.addEventListener('click', (event) => {
         let ul = backLink.parentNode.parentNode;
@@ -185,10 +188,6 @@ class HFCRelayNav {
   _setViewport() {
     const root = this;
 
-    const viewport = [];
-    let height = false;
-    let width = false;
-
     /**
      * Setting some options for viewport calculations
      */
@@ -209,6 +208,7 @@ class HFCRelayNav {
    */
   _getClosest(elem, selector) {
     const firstChar = selector.charAt(0);
+
     for (; elem && elem !== document; elem = elem.parentNode) {
       if (firstChar === '.') {
         if (elem.classList.contains(selector.substr(1))) {
@@ -233,25 +233,39 @@ class HFCRelayNav {
    * @param {String} selector Selector to match against (class, ID, or data attribute)
    * @param {String} class name to add
    */
-  _applyClassToElement(selector, className) {
+  _applySubmenuToElement(selector, className) {
     const root = this;
-    let lis = selector.querySelectorAll('li');
 
-    root._map(lis, (li) => {
-      let length = li.childNodes.length;
-
-      if(length > 1) {
+    /**
+     * Looping all lis
+     */
+    root._map(selector.querySelectorAll('li'), (li) => {
+      /**
+       * Check if the li has children and add has-submenu to it
+       */
+      if(li.childNodes.length > 1) {
+        /**
+         * Creating some DOM-Elements to store the back link
+         */
         let backLink = document.createElement('li');
-        let a = document.createElement('a');
-        let textnode = document.createTextNode(root.options.backLinkText);
+        let aTag = document.createElement('a');
 
-        a.appendChild(textnode);
-        a.classList = 'back';
-        backLink.appendChild(a);
+        /**
+         * Appending elements to the li to display the back link
+         */
+        aTag.appendChild(document.createTextNode(root.options.backLinkText));
+        aTag.classList = 'back';
+        backLink.appendChild(aTag);
 
+        /**
+         * Appending the li to the ul at the first position
+         */
         let ul = li.querySelector('ul');
         ul.insertBefore(backLink, ul.firstChild);
 
+        /**
+         * Adding has-submenu to the li
+         */
         root._toggleClass(li, className);
       }
     });
