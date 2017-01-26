@@ -84,6 +84,9 @@ class HFCRelayNav {
           root._toggleClass(openedDropdown.parentNode, 'is-open');
         });
       } else if(root._getClosest(event.target, '.priority-nav-is-visible')) {
+        /**
+         * special behaivior for mobile nav trigger
+         */
         let openedLis = selector.querySelectorAll('li.is-open');
         root._map(openedLis, (openedLi) => {
           root._toggleClass(openedLi.querySelector('ul.show'), 'show');
