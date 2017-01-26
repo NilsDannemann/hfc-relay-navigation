@@ -29,42 +29,43 @@ class HFCRelayNav {
     root._setViewport(); // assigning viewport options
 
     /**
-     * merging options from the initialization
+     * Merging options from the initialization
      */
     root.options = Object.assign(root.options, options);
 
     /**
-     * changing the viewport options while resizing
+     * Changing the viewport options while resizing
      */
     window.addEventListener('resize', () => {
       root._setViewport();
     }, true);
 
     /**
-     * add submenu classes
+     * Add submenu classes
      */
     this._applyClassToElement(selector, 'has-submenu');
 
     /**
-     *  Toggle dropdown
+     * Toggle dropdown
      */
     let submenu = selector.querySelectorAll('.has-submenu');
     root._map(submenu, (item) => {
-      item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
+      // item.getElementsByTagName('a')[0].addEventListener('click', (event) => {
+      item.querySelector('a:not(.back)').addEventListener('click', (event) => {
         let parent = event.target.parentNode;
         let classNames = ['show'];
         let right = parseInt(item.getElementsByTagName('ul')[0].getBoundingClientRect().right);
         let maxWidth = root.options.vpWidth;
 
         /**
-         * pushing menu to the left side when its outside the viewport
+         * Pushing menu to the left side when its outside the viewport
          */
         if(right >= maxWidth) {
           classNames.push('from-left');
         }
 
         /**
-         * toggleing some classes
+         * Toggleing some classes
          */
         root._toggleClass(parent, 'is-open');
         root._toggleClass(parent.querySelector('ul'), classNames);
@@ -76,9 +77,9 @@ class HFCRelayNav {
      */
     document.addEventListener('click', (event) => {
       let openedDropdowns = selector.querySelectorAll('ul.show');
-      if (!root._getClosest(event.target, '.has-submenu') && !root._getClosest(event.target, '.priority-nav-is-visible') && event.target !== event.target.querySelector('.has-submenu')) {
+      if (!root._getClosest(event.target, '.has-submenu') && !root._getClosest(event.target, '.priority-nav-is-visible') && event.target !== event.target.querySelector('.has-submenu') && !event.target.classList.contains('back')) {
         /**
-         * close all opened dropdowns when clicking outside nav
+         * Close all opened dropdowns when clicking outside nav
          */
         root._map(openedDropdowns, (openedDropdown) => {
           root._toggleClass(openedDropdown, 'show');
@@ -86,19 +87,19 @@ class HFCRelayNav {
         });
       } else if(root._getClosest(event.target, '.priority-nav-is-visible')) {
         /**
-         * special behaivior for mobile nav trigger
+         * Special behaivior for mobile nav trigger
          */
         let openedLis = selector.querySelectorAll('li.is-open');
         root._map(openedLis, (openedLi) => {
           root._toggleClass(openedLi.querySelector('ul.show'), 'show');
           root._toggleClass(openedLi, 'is-open');
         });
-      } else {
+      } else if(!event.target.classList.contains('back')) {
         root._map(openedDropdowns, (openedDropdown) => {
           let nearestLi = root._getClosest(event.target.parentNode, '.is-open');
 
           /**
-           * close all other opened dropdowns when opened a new
+           * Close all other opened dropdowns when opened a new
            */
           if(openedDropdown.parentNode !== nearestLi && !openedDropdown.parentNode.contains(nearestLi)) {
             root._toggleClass(openedDropdown, 'show');
@@ -109,7 +110,25 @@ class HFCRelayNav {
     });
 
     /**
-     * running the callback after initializing
+     * Add eventlistener to back button to hide the submenu
+     */
+     let backLinks = selector.querySelectorAll('a.back');
+     root._map(backLinks, (backLink) => {
+      backLink.addEventListener('click', (event) => {
+        let ul = backLink.parentNode.parentNode;
+
+        if(ul.classList.contains('show')) {
+          root._toggleClass(ul, 'show');
+
+          if(ul.parentNode.classList.contains('has-submenu')) {
+            root._toggleClass(ul.parentNode, 'is-open');
+          }
+        }
+      });
+     });
+
+    /**
+     * Running the callback after initializing
      */
     root.options.initCallback();
   };
@@ -126,7 +145,7 @@ class HFCRelayNav {
     let type = typeof classNames;
 
     /**
-     * checking if the classNames are a string or object
+     * Checking if the classNames are a string or object
      */
     if(type === 'string') {
       el.classList.toggle(classNames);
@@ -134,14 +153,14 @@ class HFCRelayNav {
       let existingIndex = classes.indexOf('from-left');
 
       /**
-       * removeing classes
+       * Removeing classes
        */
       classNames.map((className) => {
         el.classList.toggle(className);
       });
 
       /**
-       * little delay for smooth transitions
+       * Little delay for smooth transitions
        */
       if(existingIndex === 1) {
         setTimeout(() => {
@@ -150,7 +169,7 @@ class HFCRelayNav {
       }
 
       /**
-       * hide all children that are visible
+       * Hide all children that are visible
        */
       if(action == 'hide') {
         root._map(el.querySelectorAll('ul.show'), (ul) => {
@@ -161,7 +180,7 @@ class HFCRelayNav {
   };
 
   /**
-   *  Returns the viewport width and height
+   * Returns the viewport width and height
    */
   _setViewport() {
     const root = this;
@@ -171,7 +190,7 @@ class HFCRelayNav {
     let width = false;
 
     /**
-     * setting some options for viewport calculations
+     * Setting some options for viewport calculations
      */
     ['Width', 'Height'].map((name) => {
       let docVal = document.documentElement['client' + name];
@@ -225,7 +244,7 @@ class HFCRelayNav {
         let backLink = document.createElement('li');
         let a = document.createElement('a');
         let textnode = document.createTextNode(root.options.backLinkText);
-        
+
         a.appendChild(textnode);
         a.classList = 'back';
         backLink.appendChild(a);
