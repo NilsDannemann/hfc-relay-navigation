@@ -1,11 +1,12 @@
 /*
  * BASE STUFF
 */
-
+html {overflow-x: hidden;}
 .app-nav {
 	*, *::before, *::after{
 		-webkit-tap-highlight-color: transparent;
 		-webkit-touch-callout: none;
+		outline: none;
 	}
 	display: flex;
 	justify-content: flex-end;
@@ -57,6 +58,9 @@
 */
 @include respond-below(m) {
 	.app-nav {
+		> ul:first-child {
+		   display: none;
+		}
 		ul {
 			width: 50vw;
 			min-width: 300px;
@@ -79,15 +83,16 @@
 	a {display: inline-block; color: inherit;}
 
 	& &__dropdown-toggle {
-		@include position(relative);
+		position: relative;
 		padding: 23px;
 	}
 
 	&__dropdown {
-		@include position(absolute, $right: 0);
+		position: absolute;
+		right: 0;
 		padding: 0;
 		list-style-type: none;
-		&:not(.show) {visibility: hidden;}
+		&:not(.show) {visibility: hidden; pointer-events: none;}
 	}
 
 	&__dropdown-toggle {
@@ -108,17 +113,20 @@
 			@include respond-above(m) {
 				content: attr(prioritynav-count);
 				@include grid($justify: center, $align: center);
+				position: absolute;
+				top: 10px;
+				right: -10px;
 				width: 20px;
 				height: 20px;
-				@include position(absolute, $top:10px, $right:-10px);
 				font-size: $font-size-s;
 				background: $color-blue;
 				font-weight: bold;
+				border-radius: 100%;
 			}
 		}
 	}
 
-	&__wrapper {display: inline-block; @include respond-above(m) { position: relative;}}
+	&__wrapper {display: inline-block; @include respond-above(m) {position: relative;}}
 	&-is-visible {visibility: visible;}
 	&-is-hidden  {visibility: hidden; display: none;}
 }

@@ -56,6 +56,13 @@ class HFCRelayNav {
         let right = parseInt(item.getElementsByTagName('ul')[0].getBoundingClientRect().right);
 
         /**
+         * Prevent url action when opening a submenu
+         */
+        if (parent.classList.contains('has-submenu')) {
+          event.preventDefault();
+        }
+
+        /**
          * Pushing menu to the left side when its outside the viewport
          */
         if(right >= root.options.vpWidth) {
@@ -119,10 +126,8 @@ class HFCRelayNav {
      root._map(backLinks, (backLink) => {
       backLink.addEventListener('click', (event) => {
         let ul = backLink.parentNode.parentNode;
-
         if(ul.classList.contains('show')) {
           root._toggleClass(ul, 'show');
-
           if(ul.parentNode.classList.contains('has-submenu')) {
             root._toggleClass(ul.parentNode, 'is-open');
           }
