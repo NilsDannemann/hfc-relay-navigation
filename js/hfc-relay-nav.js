@@ -75,20 +75,27 @@ class HFCRelayNav {
      */
     document.addEventListener('click', (event) => {
       if (!root._getClosest(event.target, '.has-submenu') && !root._getClosest(event.target, '.priority-nav-is-visible') && event.target !== event.target.querySelector('.has-submenu')) {
+        /**
+         * close all opened dropdowns when clicking outside nav
+         */
         let elementsToHide = selector.querySelectorAll('ul.show');
+        // let elementsToHide = selector.querySelectorAll('li.is-open');
         root._map(elementsToHide, (element) => {
           root._toggleClass(element, 'show');
+          root._toggleClass(element.parentNode, 'is-open');
         });
       } else {
-        let elements = selector.querySelectorAll('ul.show');
+        let openedDropdowns = selector.querySelectorAll('ul.show');
+        root._map(openedDropdowns, (openedDropdown) => {
+          let nearestLi = root._getClosest(event.target.parentNode, '.is-open');
 
-        root._map(elements, (element) => {
-          if(element.parentNode !== event.target.parentNode) {
-            // root._toggleClass(element, 'show');
+          /**
+           * close all other openend dropdowns when opened a new
+           */
+          if(openedDropdown.parentNode !== nearestLi && !openedDropdown.parentNode.contains(nearestLi)) {
+            root._toggleClass(openedDropdown, 'show');
+            root._toggleClass(openedDropdown.parentNode, ['is-open']);
           }
-          // root._getClosest(element.parentNode, '.is-open')
-          // if(root._getClosest(, 'ul') != element) console.log(123);
-          // console.log(element, event.target.parentNode.querySelector('ul'));
         });
       }
     });
@@ -106,7 +113,7 @@ class HFCRelayNav {
    */
   _toggleClass(el, classNames) {
     const root = this;
-    const classes = el && el.className.split(' ') ? el.className.split(' ') : [];
+    const classes = el && el.className ? el.className.split(' ') : [];
     const action = (classes.indexOf('show') !== -1 ? 'hide' : 'show');
     let type = typeof classNames;
 
