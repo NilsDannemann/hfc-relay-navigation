@@ -40,6 +40,7 @@
 		&.show{
 			opacity: 1; 
 			transform: translate(0,0);
+			@include respond-below(m) {overflow-x: hidden;} //For: Firefox scroll bug
 		}
 	}
 }

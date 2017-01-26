@@ -8047,6 +8047,9 @@ html {
     .app-nav ul:not(:first-child).show {
       opacity: 1;
       transform: translate(0, 0); }
+      @media only screen and (max-width: 650px) {
+        .app-nav ul:not(:first-child).show {
+          overflow-x: hidden; } }
 
 @media only screen and (max-width: 650px) {
   .pusher {
