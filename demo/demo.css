@@ -7884,6 +7884,9 @@ hr {
 .app-nav {
   display: flex;
   justify-content: flex-end; }
+  .app-nav *, .app-nav *::before, .app-nav *::after {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none; }
   .app-nav a {
     width: 100%;
     padding: 20px; }
@@ -7926,7 +7929,8 @@ hr {
     min-width: 300px;
     position: fixed;
     top: 0;
-    bottom: 0;
+    bottom: 0; }
+  .app-nav.is-open .show:last-child {
     overflow-y: scroll; } }
 
 /*

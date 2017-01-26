@@ -1,7 +1,12 @@
 /*
  * BASE STUFF
 */
+
 .app-nav {
+	*, *::before, *::after{
+		-webkit-tap-highlight-color: transparent;
+		-webkit-touch-callout: none;
+	}
 	display: flex;
 	justify-content: flex-end;
 	a {
@@ -58,6 +63,8 @@
 			position: fixed;
 			top: 0;
 			bottom: 0;
+		}
+		&.is-open .show:last-child{
 			overflow-y: scroll;
 		}
 	}
