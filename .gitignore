@@ -6,7 +6,6 @@
 *.exe
 *.o
 *.so
-js/hfc-relay-nav.min.*
 
 # Packages #
 ############
