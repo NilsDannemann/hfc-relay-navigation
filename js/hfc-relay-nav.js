@@ -10,7 +10,8 @@ class HFCRelayNav {
   options = {
     initCallback: () => {},
     vpHeight: false,
-    vpWidth: false
+    vpWidth: false,
+    backLinkText: 'Zurück'
   };
 
   /**
@@ -221,6 +222,17 @@ class HFCRelayNav {
       let length = li.childNodes.length;
 
       if(length > 1) {
+        let backLink = document.createElement('li');
+        let a = document.createElement('a');
+        let textnode = document.createTextNode(root.options.backLinkText);
+        
+        a.appendChild(textnode);
+        a.classList = 'back';
+        backLink.appendChild(a);
+
+        let ul = li.querySelector('ul');
+        ul.insertBefore(backLink, ul.firstChild);
+
         root._toggleClass(li, className);
       }
     });
