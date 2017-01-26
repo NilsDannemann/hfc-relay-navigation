@@ -2,6 +2,8 @@
  * BASE STUFF
 */
 .app-nav {
+	display: flex;
+	justify-content: flex-end;
 	a {
 		width: 100%;
 		padding: $whitespace;
@@ -111,5 +113,5 @@
 
 	&__wrapper {display: inline-block; @include respond-above(m) { position: relative;}}
 	&-is-visible {visibility: visible;}
-	&-is-hidden  {visibility: hidden;}
+	&-is-hidden  {visibility: hidden; display: none;}
 }

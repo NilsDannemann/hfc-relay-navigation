@@ -7881,22 +7881,22 @@ hr {
 /*
  * BASE STUFF
 */
-.app-nav a {
-  width: 100%;
-  padding: 20px; }
-
-.app-nav .has-submenu::after {
-  content: '+';
-  margin: 0 20px 0 -20px;
-  display: inline-block; }
-
-.app-nav .has-submenu ul:not(.show) {
-  visibility: hidden;
-  pointer-events: none; }
-
-@media only screen and (min-width: 650px) {
-  .app-nav .has-submenu .back {
-    display: none; } }
+.app-nav {
+  display: flex;
+  justify-content: flex-end; }
+  .app-nav a {
+    width: 100%;
+    padding: 20px; }
+  .app-nav .has-submenu::after {
+    content: '+';
+    margin: 0 20px 0 -20px;
+    display: inline-block; }
+  .app-nav .has-submenu ul:not(.show) {
+    visibility: hidden;
+    pointer-events: none; }
+  @media only screen and (min-width: 650px) {
+    .app-nav .has-submenu .back {
+      display: none; } }
 
 /*
  * FLYOUT
@@ -7986,7 +7986,8 @@ hr {
   .priority-nav-is-visible {
     visibility: visible; }
   .priority-nav-is-hidden {
-    visibility: hidden; }
+    visibility: hidden;
+    display: none; }
 
 .app-nav {
   /*
