@@ -16,10 +16,8 @@ html {overflow-x: hidden;}
 	}
 	display: flex;
 	justify-content: flex-end;
-	a {
-		width: 100%;
-		padding: $whitespace;
-	}
+	ul {list-style-type: none; padding:0;&:not(:first-child) {background: #eee;}}
+	a {width: 100%;padding: $whitespace;}
 
 	.has-submenu {
 		&::after{
@@ -126,9 +124,7 @@ html {overflow-x: hidden;}
 				width: 20px;
 				height: 20px;
 				font-size: $font-size-s;
-				background: $color-blue;
-				font-weight: bold;
-				border-radius: 100%;
+				background: #eee;
 			}
 		}
 	}

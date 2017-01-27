@@ -4,7 +4,7 @@
 	*/
 	background-color: $color-spaceblack;
 	color: white;
-	ul {list-style-type: none; padding:0; &:not(:first-child) {background: $color-blue;}}
+	ul {&:not(:first-child) {background: $color-blue;}}
 
 	/*
 	 * ICONS
@@ -54,6 +54,18 @@
 				pointer-events: all !important;
 				opacity: 1 !important;
 				transform: translateX(50vw) !important;
+			}
+		}
+	}
+}
+
+.priority-nav {
+	&__dropdown-toggle {
+		&::after { 
+			@include respond-above(m) {
+				background: $color-blue;
+				font-weight: bold;
+				border-radius: 100%;
 			}
 		}
 	}
