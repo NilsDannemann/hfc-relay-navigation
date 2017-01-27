@@ -169,6 +169,7 @@ class HFCRelayNav {
     const root = this;
     const classes = el && el.className ? el.className.split(' ') : [];
     const action = (classes.indexOf('show') !== -1 ? 'hide' : 'show');
+    const existingIndex = classes.indexOf('from-left');
     let type = typeof classNames;
 
     /**
@@ -177,23 +178,12 @@ class HFCRelayNav {
     if(type === 'string') {
       el.classList.toggle(classNames);
     } else if(type === 'object') {
-      let existingIndex = classes.indexOf('from-left');
-
       /**
        * Removeing classes
        */
       classNames.map((className) => {
         el.classList.toggle(className);
       });
-
-      /**
-       * Little delay for smooth transitions
-       */
-      if(existingIndex === 1) {
-        setTimeout(() => {
-          el.classList.toggle('from-left');
-        }, 350)
-      }
 
       /**
        * Hide all children that are visible
@@ -203,6 +193,15 @@ class HFCRelayNav {
           root._toggleClass(ul, 'show');
         });
       }
+    }
+
+    /**
+     * Little delay for smooth transitions
+     */
+    if(existingIndex === 1) {
+      setTimeout(() => {
+        el.classList.toggle('from-left');
+      }, 350)
     }
   };
 
