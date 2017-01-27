@@ -7947,8 +7947,10 @@ html {
     position: fixed;
     top: 0;
     bottom: 0; }
-  .app-nav.is-open .show:last-child {
-    overflow-y: scroll; } }
+  .app-nav.is-open .show {
+    overflow-y: scroll; }
+    .app-nav.is-open .show::-webkit-scrollbar {
+      display: none; } }
 
 /*
  * PRIORITY

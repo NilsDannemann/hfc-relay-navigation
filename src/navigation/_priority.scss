@@ -73,8 +73,9 @@ html {overflow-x: hidden;}
 			top: 0;
 			bottom: 0;
 		}
-		&.is-open .show:last-child{
+		&.is-open .show{
 			overflow-y: scroll;
+			&::-webkit-scrollbar {display: none;}
 		}
 	}
 }
